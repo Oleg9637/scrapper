@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   wildbeerries_bot:
     build:

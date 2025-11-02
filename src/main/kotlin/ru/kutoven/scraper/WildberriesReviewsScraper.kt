@@ -42,7 +42,7 @@ class WildberriesReviewsScraper(private val config: Properties = getDefaultConfi
     }
 
     fun initializeDriver() {
-        val chromeDriverPath = config.getProperty("webdriver.chrome.driver", "")
+        val chromeDriverPath = System.getenv("CHROMEDRIVER_PATH") ?: config.getProperty("webdriver.chrome.driver", "")
         if (chromeDriverPath.isNotBlank()) {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath)
         }
@@ -81,7 +81,7 @@ class WildberriesReviewsScraper(private val config: Properties = getDefaultConfi
         )
         options.setExperimentalOption("prefs", prefs)
 
-        val chromeBinary = config.getProperty("chrome.binary", "")
+        val chromeBinary = System.getenv("CHROME_BIN") ?: config.getProperty("chrome.binary", "")
         if (chromeBinary.isNotBlank()) {
             options.setBinary(chromeBinary)
         }
